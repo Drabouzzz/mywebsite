@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You caaa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+    body{
+      background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
+      display:flex;flex-direction:column;align-items:center;
+      min-height:100vh;padding:20px;
+    }
+
+    .container{width:100%;max-width:400px}
+
+    /* FOTO UTAMA (BALANCE) */
+    .image-box{
+      width:80%;margin:0 auto;
+      aspect-ratio:3/4;
+      border-radius:18px;
+      overflow:hidden;position:relative;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .image-box img{width:100%;height:100%;object-fit:cover}
+
+    .overlay-text{
+      position:absolute;top:12px;left:12px;
+      color:white;text-shadow:0 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .dear{font-size:15px}
+    .name{font-family:'Great Vibes',cursive;font-size:30px}
+
+    /* MENGENAL */
+    .intro{text-align:center;margin-top:20px}
+
+    .intro .title{
+      font-family:'Great Vibes',cursive;
+      font-size:26px;color:#d63384;
+    }
+
+    .intro .text{
+      font-size:13px;color:#444;
+      margin-top:6px;line-height:1.6;
+    }
+
+    /* VIDEO + DISC */
+    .video-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;margin-top:20px;
+      align-items:center;
+    }
+
+    .video-layout video{
+      width:100%;border-radius:12px;
+      object-fit:cover;
+    }
+
+    .disc{
+      width:100px;height:100px;
+      border-radius:50%;
+      object-fit:cover;
+      margin:auto;
+      animation:spin 6s linear infinite;
+      box-shadow:0 0 12px rgba(255,105,180,0.3);
+    }
+
+    @keyframes spin{
+      from{transform:rotate(0)}
+      to{transform:rotate(360deg)}
+    }
+
+    /* SECTION SERAGAM */
+    .section{
+      margin-top:20px;
+      text-align:center;
+    }
+
+    .section .title{
+      font-size:15px;font-weight:600;
+      color:#d63384;margin-bottom:4px;
+    }
+
+    .section .text{
+      font-size:13px;color:#444;
+      line-height:1.6;
+    }
+
+    /* PAPARAZZI (BALANCE) */
+    .paparazzi{
+      width:80%;margin:22px auto 0;
+      border-radius:14px;overflow:hidden;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .paparazzi img{width:100%}
+
+    .caption{
+      text-align:center;font-size:12px;
+      color:#777;margin-top:6px;
+    }
+
+    /* BUTTON */
+    .footer{text-align:center;margin-top:28px}
+
+    .btn{
+      background:#ff85a2;color:white;
+      padding:9px 18px;border-radius:20px;
+      text-decoration:none;font-size:13px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+
+  
+    /* ANIMASI */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @keyframes pop{
+      0%{transform:scale(0)}
+      80%{transform:scale(1.2)}
+      100%{transform:scale(1)}
+    }
+
+    /* BUNGA JATUH */
+    .flower{
+      position:fixed;
+      top:-20px;
+      font-size:14px;
+      animation:fall linear infinite;
+      opacity:0.6;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    @keyframes fall{
+      to{transform:translateY(110vh)}
+    }
+
+    .future-photo-box {
+  width: 70%;
+  margin: 24px auto;
+  aspect-ratio: 1 / 1; /* persegi */
+}
+
+.future-photo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  animation: futureFade 1.5s ease;
+}
+
+.future-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  white-space: pre-line;
+  opacity: 0.9;
+}
+
+/* animasi khusus (biar beda tapi nggak ganggu) */
+@keyframes futureFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  </style>
+</head>
+<body>
+
+<!-- bunga jatuh -->
+<script>
+  for(let i=0;i<15;i++){
+    let f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(f);
+  }
+</script>
+
+<audio id="bgm" loop>
+  <source src="assets/BGM NIH.mp4" type="audio/mpeg">
+</audio>
+<script>
+  document.addEventListener("click",()=>{
+    document.getElementById("bgm").play();
+  },{once:true});
+</script>
+
+ <div class="section" style="animation:fadeUp 1.6s ease;">
+    <div class="title">KLIK FOTONYA</div>
+  </div>
+
+<div class="container">
+
+  <!-- FOTO UTAMA -->
+  <div class="image-box" style="animation:fadeUp 1s ease;">
+    <div class="sticker" style="top:10px;right:15px;animation:pop 1.2s;">💗</div>
+    <div class="sticker" style="bottom:10px;left:15px;animation:pop 1.4s;">✨</div>
+    <img src="assets/main2.jpeg">
+    <div class="overlay-text">
+      <div class="dear">Dear</div>
+      <div class="name">Nurfhaisa</div>
+    </div>
+  </div>
+
+  <!-- MENGENAL -->
+  <div class="intro" style="animation:fadeUp 1.2s ease;">
+    <div class="title">About Her</div>
+    <div class="text">"Wahhh bang.... gila sih nih orang.keren keren,kek dia tuh bisa konsisten di kelas yang kompenya keras itu keren banget. Bahkan bukan hanya dikelas tapi dia sempet juga jadi terbaik di jurusan pas kelas 10. hebat hebat bang. punya visual cakep yang pasti diakui semua mata terus punya beautiful brain juga...canggih canggih"<br>-From me, VIA Interview.</div>
+  </div>
+
+  <!-- VIDEO + FOTO TENGAH -->
+  <div class="video-layout" style="animation:fadeUp 1.4s ease;">
+    <video src="assets/BGM NIH.mp4" autoplay muted loop></video>
+
+    <img src="assets/putarr.png" class="disc">
+
+    <video src="assets/BGM NIH.mp4" autoplay muted loop></video>
+  </div>
+
+  <!-- KATA -->
+  <div class="section" style="animation:fadeUp 1.6s ease;">
+    <div class="title">Sejak kapan</div>
+    <div style="font-style: italic;" class="text">"Awalnya sih pas gw menang lawan dia di cerdas cermat, nahhhh gw kegirangan berat banget tuhhh bang abis itu.Kaya wahhhh gila keren banget ya gw anj, bisa ngalahin dia.Sumpah soalnya menurut gw dia tuh bisa dibilang masuk top 5 lahhh terbaik diangkatan ini. Gw bisa sapu bersih 2 babak, kekkkkk.... AHAYYYYYYYYYYYYYYY"</div>
+  </div>
+
+ <div class="paparazzi" style="animation:fadeUp 1.8s ease;">
+    <img src="assets/KAPAN.jpeg">
+  </div>
+  <div class="caption">KEREN BANGET GW ANJAYYYYYYYYYYYY</div>
+
+  <div class="section" style="animation:fadeUp 1.6s ease;">
+    <div class="title">Gimana cara konversi ini jadi semangat</div>
+    <div class="text">Simple sih gw berusaha sebaik mungkin aja di akademik, biar ke noticeeee......WOKWOKWOKWOK. buat urusan out of academic juga ada impact, gw sering ngarang cerita ke orang rumah trus mereka pura pura percaya biar gw seneng.....meskipun gw tau begitu gw teteap aja ketawa puassss KEK ORG GILA.....terus terusan tuh meskipun selalu gw ulang rasa ketawa gw masih puas banget. wahh gelo hormon bahagia gw gampang banget kepancing disini</div>
+  </div>
+
+  <div class="section" style="animation:fadeUp 1.6s ease;">
+    <div class="title">pesan pesan pesan pesan pesan</div>
+    <div class="text">Yaaaaa ga berharap banyak lahh seandainya sebelum gw kasih tau ini dan ternyata dia udah tau ini...entahlah itu dari kode kode yg gw tunjukin ataupun yg lain, dan setelah gw baca tindakannya yang seolah olah dia masih nerima gw sebagai temennya aja gw udahhh seneng bangettt.hahayyyyyy seru cok kagum diem diem gni ada positive impact yg bisa gw petik sendiri....visual gw bukan apa apa, soal kepunyaan gw juga gak begitu...tapi yaudah lahh anjjjj gw gosah sed sed. gw bener bener enjoy banget kagum diem diem begini yg jadi sumber semangat rahasia gw selama ini buat dateng awal ke sekolah dan nungguin istirahat KEK CGKSUFVBVROEHPOBHBJWRWP</div>
+  </div>
+
+  <!-- PAPARAZZI -->
+  <div class="paparazzi" style="animation:fadeUp 1.8s ease;">
+    <img src="assets/paketttt/IMG-20260227-WA0010.jpg">
+  </div>
+  <div class="caption">meskipun hari jumat pas MBG kemarin gw gamasuk tapi aman aja gw tetep merhatiin lu kok wkwkkwkwk</div>
+
+   <div class="section" style="animation:fadeUp 1.6s ease;">
+    <div class="title">What we want to achieve</div>
+    <!-- <div style="font-style: italic;" class="text">"Awalnya sih pas gw menang lawan dia di cerdas cermat, nahhhh gw kegirangan berat banget tuhhh bang abis itu.Kaya wahhhh gila keren banget ya gw anj, bisa ngalahin dia.Sumpah soalnya menurut gw dia tuh bisa dibilang masuk top 5 lahhh terbaik diangkatan ini. Gw bisa sapu bersih 2 babak, kekkkkk.... AHAYYYYYYYYYYYYYYY"</div> -->
+  </div>
+
+ <!-- <div class="paparazzi" style="animation:fadeUp 1.8s ease;">
+    <img src="#" alt="Fotbar kami di wisuda">
+  </div> -->
+  <div class="future-photo-box">
+  <div class="future-photo-inner">
+    <span class="future-text">
+      foto kami di wisuda
+    </span>
+  </div>
+</div>
+  <div style="font-style: italic;" class="caption">"gass u bantai MP, gw bantai TKJ. Kita sama sama naik panggung wisuda" <br>- pesan di 14 Februari 2026</div>
+<div class="intro" style="animation:fadeUp 1.2s ease;">
+    <div style="font-size: 40px;" class="title">ThankYouSoMuch</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <a href="Flower with heart code/Flower with heart code/flower_w_heart.html" class="btn">----></a>
+  </div>
+
+</div>
+
+</body>
+</html>
