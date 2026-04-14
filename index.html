@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You caaa</title>
+<title>Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
@@ -13,59 +14,66 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(270deg, #ffd6e7, #ffeaf4, #ffd6e7);
-  background-size:600% 600%;
-  animation: gradientMove 12s ease infinite;
   overflow:hidden;
+  background:#ffd6e7;
+  animation:bgChange 6s ease forwards;
 }
 
-@keyframes gradientMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+/* TRANSISI WARNA BENERAN */
+@keyframes bgChange{
+  0%{background:#ffd6e7;}
+  40%{background:#e8c7d5;}
+  70%{background:#999;}
+  100%{background:#2f2f2f;}
 }
 
-/* TRANSISI MASUK (CURTAIN STYLE SOFT BLOOM) */
+/* TIRAI */
 .loader{
   position:fixed;
   inset:0;
-  background:#ffeaf4;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   z-index:9999;
-  animation: openReveal 2s ease forwards;
 }
 
-@keyframes openReveal{
-  0%{clip-path:circle(100% at 50% 50%)}
-  100%{clip-path:circle(0% at 50% 50%);opacity:0;visibility:hidden}
+.loader::before,
+.loader::after{
+  content:"";
+  width:50%;
+  height:100%;
+  background:#ffd6e7;
+  position:absolute;
+  top:0;
+  transition:transform 1.6s ease;
 }
 
+.loader::before{ left:0; }
+.loader::after{ right:0; }
+
+body.loaded .loader::before{ transform:translateX(-100%); }
+body.loaded .loader::after{ transform:translateX(100%); }
+
+/* CONTAINER */
 .container{
   text-align:center;
-  animation:fadeIn 1.5s ease;
-  position:relative;
   z-index:2;
 }
 
 h1{
   font-family:'Great Vibes',cursive;
   font-size:40px;
-  color:#d63384;
+  color:#fff;
   animation:float 3s ease-in-out infinite;
 }
 
 p{
   font-size:14px;
   margin-top:10px;
-  color:#555;
+  color:#ddd;
 }
 
 .credit{
   font-size:12px;
   margin-top:8px;
-  color:#888;
+  color:#aaa;
   opacity:0;
   animation:fadeIn 2s ease forwards;
   animation-delay:2.5s;
@@ -76,13 +84,15 @@ p{
   margin-top:25px;
   padding:10px 20px;
   border-radius:20px;
-  background:#ff85a2;
+  background:#444;
   color:white;
   text-decoration:none;
   font-size:14px;
   animation:pulse 2s infinite;
+  cursor:pointer;
 }
 
+/* ANIMASI */
 @keyframes float{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
@@ -99,105 +109,89 @@ p{
   to{opacity:1}
 }
 
-/* SHIMMER */
-.shimmer{
-  position:fixed;
-  top:0;
-  left:-100%;
-  width:200%;
-  height:100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-  animation: shimmerMove 6s infinite;
-  pointer-events:none;
-  z-index:1;
-}
-
-@keyframes shimmerMove{
-  0%{left:-100%}
-  100%{left:100%}
-}
-
 /* SPARKLE */
 .sparkle{
   position:fixed;
-  width:4px;
-  height:4px;
+  width:3px;
+  height:3px;
   background:white;
   border-radius:50%;
-  opacity:0.7;
+  opacity:0.6;
   animation: sparkleBlink 2s infinite ease-in-out;
-  z-index:1;
 }
 
 @keyframes sparkleBlink{
-  0%,100%{opacity:0.2;transform:scale(0.8)}
-  50%{opacity:1;transform:scale(1.4)}
+  0%,100%{opacity:0.2}
+  50%{opacity:1}
 }
 
-/* FLOATING SYMBOL */
-.symbol{
-  position:absolute;
-  font-size:14px;
-  animation:floatUp linear infinite;
-  opacity:0.7;
+/* POPUP FIX */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:0.4s;
+  z-index:99999; /* FIX supaya di atas semua */
 }
 
-@keyframes floatUp{
-  from{transform:translateY(100vh) scale(0.6) rotate(0deg);opacity:0}
-  to{transform:translateY(-10vh) scale(1) rotate(360deg);opacity:1}
+.popup.active{
+  opacity:1;
+  pointer-events:auto;
 }
 
-/* GLOW */
-.glow{
-  position:absolute;
-  width:120px;
-  height:120px;
-  background:rgba(255,182,193,0.4);
-  border-radius:50%;
-  filter:blur(60px);
-  animation:moveGlow 10s infinite alternate ease-in-out;
+.popup-content{
+  background:#2f2f2f;
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+  width:80%;
+  max-width:300px;
+  color:#eee;
+  animation:fadeUp 0.5s ease;
 }
 
-@keyframes moveGlow{
-  from{transform:translate(-50px,-50px)}
-  to{transform:translate(50px,50px)}
+.popup-content button{
+  margin-top:15px;
+  padding:6px 14px;
+  border:none;
+  border-radius:12px;
+  background:#555;
+  color:white;
+  cursor:pointer;
 }
 
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
+
 <body>
 
 <div class="loader"></div>
-<div class="shimmer"></div>
-
-<div class="glow" style="top:20%;left:10%;"></div>
-<div class="glow" style="bottom:10%;right:15%;"></div>
 
 <script>
+// buka tirai
+setTimeout(()=>{ document.body.classList.add("loaded"); },800);
+
 // sparkle
-for(let i=0;i<50;i++){
+for(let i=0;i<40;i++){
   let s=document.createElement("div");
   s.className="sparkle";
   s.style.top=Math.random()*100+"vh";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(1.5+Math.random()*2)+"s";
-  document.body.appendChild(s);
-}
-
-// symbol
-const icons=["✨","🌸","⭐","💫"];
-for(let i=0;i<25;i++){
-  let s=document.createElement("div");
-  s.className="symbol";
-  s.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(s);
 }
 
 // typing
-const text1="Welcome,";
-const text2="Baca teks arahan dari atas ya";
+const text1="Hello,";
+const text2="Tolong jaga nama baik gw ya sebaik gw jaga nama lu, jgn anggap gw serem jgn sungkan sama gw ya....";
 let i=0,j=0;
 
 function typeTitle(){
@@ -217,13 +211,35 @@ function typeSub(){
 }
 
 window.onload=typeTitle;
+
+/* POPUP FIX TOTAL */
+function openPopup(){
+  document.getElementById("popup").classList.add("active");
+}
+
+function closePopup(){
+  document.getElementById("popup").classList.remove("active");
+}
 </script>
 
 <div class="container">
   <h1 id="typing"></h1>
   <p id="subtext"></p>
-  <div class="credit">made by @fwznnn</div>
-  <a href="main.html" class="btn">continue</a>
+  <div class="credit">gw udh nulis dibuku waktu itu, isinya gw berharap banget seandainya lu waktu itu punya pacar gw berhrap pacar lu yg mapan yg bisa jajanin lu. gw selalu support lu kok <br>gw ngerti posisi nya gw paham gw juga bakal ngelakuin hal yang sama kalo ada di posisi itu  </div>
+  <div class="btn" onclick="openPopup()">continue</div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <p>
+      I just wanted to say…<br><br>
+      I admire you, in a quiet way.<br>
+      Not to expect anything,<br>
+      just something I needed to acknowledge.<br><br>
+      That’s all.
+    </p>
+    <button onclick="closePopup()">close</button>
+  </div>
 </div>
 
 </body>
